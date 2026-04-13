@@ -53,10 +53,10 @@
   loop: "{{ docker_users }}"
 
 
-- name: Docker Installation | Check if Docker Compose is already installed
-  ansible.builtin.command: docker-compose --version
-  register: compose_check
-  ignore_errors: true
+- name: Docker Installation | Check docker-compose binary
+  ansible.builtin.stat:
+    path: /usr/local/bin/docker-compose
+  register: compose_bin
 
 - name: Docker Installation | Install Docker Compose
   ansible.builtin.get_url:
@@ -65,8 +65,7 @@
     mode: '0755'
     owner: root
     group: root
-  when: compose_check is failed
-
+  when: not compose_bin.stat.exists
 
 - name: Docker Installation | Verify Docker installation
   ansible.builtin.command: docker --version
