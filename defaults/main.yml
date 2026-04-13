@@ -1,0 +1,5 @@
+---
+# defaults file for ansible-role-docker-installation
+docker_compose_version: "2.24.5"
+docker_users:
+   - "{{ ansible_user_id }}"

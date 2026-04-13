@@ -1,0 +1,10 @@
+---
+# tasks file for ansible-role-docker-installation
+- name: Docker Installation | Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Docker Installation | include installation on Ubuntu
+  include_tasks: ubuntu-installation.yml
+  when: ansible_distribution == 'Ubuntu'

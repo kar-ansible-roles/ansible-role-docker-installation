@@ -1,0 +1,19 @@
+galaxy_info:
+  role_name: docker_installation
+  author: karsak4747
+  description: Ansible role for installing docker engine, docker compose, docker-cli and containerd on Ubuntu.
+  company: Karo
+
+  license: MIT
+
+  min_ansible_version: 2.9
+
+  platform:
+    - name: Ubuntu
+      tasted_version: 22.04
+
+  galaxy_tags:
+    - docker
+    - ubuntu
+
+dependencies: []

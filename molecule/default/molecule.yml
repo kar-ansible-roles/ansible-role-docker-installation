@@ -1,0 +1,34 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: vagrant  
+  provider:
+    name: virtualbox
+
+platforms:
+  - name: instance
+    box: ubuntu/jammy64
+    memory: 2048
+    cpus: 1
+
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_LIBRARY: /home/dev47/.local/lib/python3.10/site-packages/molecule_plugins/vagrant/modules
+  config_options:
+    defaults:
+      host_key_checking: False
+      interpreter_python: auto_silent
+      roles_path: "$MOLECULE_PROJECT_DIRECTORY/.."
+  options:
+    become: true
+    become_method: sudo
+#    become_user: root
+
+
+verifier:
+  name: ansible
+
+
